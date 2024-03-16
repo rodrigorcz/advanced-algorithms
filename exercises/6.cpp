@@ -13,7 +13,7 @@ int main(int argc, char * argv[]){
         cin >> n >> m;
         char wall[n][m];
 
-        int left = -1, right = -1;
+        int left = -1, right = m;
         int top = n;
 
         for(int j = 0; j<n; j++){
@@ -27,16 +27,10 @@ int main(int argc, char * argv[]){
                     if(top > j)
                         top = j;
 
-                    if(left == -1)
+                    if(left == -1 || left > k)
                         left = k;
 
-                    if(right == -1)
-                        right = k;
-
-                    if(left > k)
-                        left = k;
-
-                    if(right < k)
+                    if(right == m || right < k)
                         right = k;
                 }
             }
