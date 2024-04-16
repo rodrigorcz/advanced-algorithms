@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int dynamic_prog(int *gomo, int n){
+int search(int *gomo, int n){
     vector<int> results(n + 1, 0);
 
     for (int i = 1; i <= n; i++) {
@@ -28,7 +28,7 @@ int main(){
     for(int i = 0; i<n; i++)
         cin >> gomos[i];
     
-    int x = dynamic_prog(gomos, n);
+    int x = search(gomos, n);
     cout << x;
 
     return 0;

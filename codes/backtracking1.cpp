@@ -17,7 +17,7 @@ int num_changes(string str1, string str2, int n){
     return diff;
 }
 
-void backtracking(string dna_of, string dna_mut, int index, int n, int k, int changes, queue<string>&mut){
+void mutation(string dna_of, string dna_mut, int index, int n, int k, int changes, queue<string>&mut){
 
     if(index == n){
         mut.push(dna_mut);
@@ -29,7 +29,7 @@ void backtracking(string dna_of, string dna_mut, int index, int n, int k, int ch
             changes = num_changes(dna_of, dna_mut, n);
 
             if(changes <= k)
-                backtracking(dna_of, dna_mut, index+1, n, k, changes, mut);
+                mutation(dna_of, dna_mut, index+1, n, k, changes, mut);
         }
     }
 }
@@ -46,7 +46,7 @@ int main(int argc, char * argv[]){
         cin >> dna;
 
         queue<string> mut;
-        backtracking(dna, dna, 0, n, k, 0, mut);
+        mutation(dna, dna, 0, n, k, 0, mut);
 
         cout << mut.size() << endl;
 

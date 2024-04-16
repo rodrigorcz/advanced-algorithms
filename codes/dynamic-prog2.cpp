@@ -7,7 +7,7 @@ using namespace std;
 
 #define INF INT_MAX-1
 
-int PD(int *options,  int *memo, int n, int v){
+int search(int *options,  int *memo, int n, int v){
 
     if(n-1 <= v)
         return 0;
@@ -23,7 +23,7 @@ int PD(int *options,  int *memo, int n, int v){
     for (int j = 1; j <= options[v]; j++){
         int next = v + j;
         if(next < n)
-            memo[v] = min(PD(options, memo, n, next) + 1, memo[v]);
+            memo[v] = min(search(options, memo, n, next) + 1, memo[v]);
     }
 
     return memo[v];
@@ -41,7 +41,7 @@ int main(){
     for(int i = 0; i<n; i++)
         cin >> options[i];
 
-    int x = PD(options, memo, n,  0);
+    int x = search(options, memo, n,  0);
 
     if(x >= INF || x < 0)
         cout << "Salto impossivel";
