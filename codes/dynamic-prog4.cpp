@@ -8,7 +8,7 @@ using namespace std;
 // knapsack problem
 int num_pags(int n, int x, int *precos, int *paginas){
 
-    vector<int> memo(x, 0);
+    vector<int> memo(x+1, 0);
 
     for (int i = 0; i < n; i++) {
         for (int j = x; j >= precos[i]; j--) {
