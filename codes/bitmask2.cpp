@@ -9,10 +9,7 @@ int side, n;
 bool solve(vector<int>& sticks, vector<int>& memo, int k, int curside, int mask, int i) {
     if(k == 1)
         return true;
-
-    if(curside == side)
-        return solve(sticks, memo, k - 1, 0, mask, 0);
-
+        
     for(int j = i; j < sticks.size(); j++){
         if(!(mask & (1 << j))){
             int nxtside = curside + sticks[j];
