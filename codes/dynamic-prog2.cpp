@@ -9,14 +9,9 @@ using namespace std;
 
 int search(int *options,  int *memo, int n, int v){
 
-    if(n-1 <= v)
-        return 0;
-
-    if(memo[v] != -1)
-        return memo[v];
-
-    if(options[v] == 0)
-        return INF;
+    if(n-1 <= v) return 0;
+    if(memo[v] != -1) return memo[v];
+    if(options[v] == 0) return INF;
         
     memo[v] = INF;
 
