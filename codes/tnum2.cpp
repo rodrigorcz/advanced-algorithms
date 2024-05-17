@@ -2,7 +2,7 @@
 
 using namespace std;
 
-// euclid's algorithm
+// euclid's algorithm MDC(b,a%b)
 string mdc(string s1, string s2){
    
     if (s1.length() < s2.length()){
@@ -15,7 +15,7 @@ string mdc(string s1, string s2){
         return s1;
 
     }else{
-        return mdc(s1.substr(s2.length()), s2); // MDC(a%b, b)
+        return mdc(s1.substr(s2.length()), s2);
     }
 }
  
