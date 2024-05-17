@@ -13,17 +13,13 @@ bool solve(vector<int>& sticks, int k, int curside, int mask, int i) {
     for(int j = i; j < sticks.size(); j++){
         if(!(mask & (1 << j))){
             int nxtside = curside + sticks[j];
-
             if(nxtside <= side){
-
                 if(nxtside == side){
                     if(solve(sticks, k - 1, 0, mask | (1 << j), 0))
                         return true;
-
                 }else{
                     if(solve(sticks, k, nxtside, mask | (1 << j), j + 1))
                         return true;
-
                 }
             }
         }
