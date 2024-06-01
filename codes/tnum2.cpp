@@ -19,7 +19,7 @@ string mdc(string s1, string s2){
     }
 }
  
-int main(){
+int main(){ 
     string s1, s2;
     cin >> s1 >> s2;
 
