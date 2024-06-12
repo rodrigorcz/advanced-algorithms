@@ -17,17 +17,17 @@ void dfs(int v, vector<bool> &visitado, stack<int> &pilha, vector<vector<int>> g
     pilha.push(v);
 }
 
-void dfs_util(int v, vector<bool> &visitado, vector<vector<int>> grafo, int &contagem){
-    visitado[v] = true;
+void dfs_util(int v, vector<int> &cor, vector<vector<int>> grafo, int var, int &contagem){
+    cor[v] = var;
     contagem++;
 
     for (int u : grafo[v]) {
-        if (!visitado[u])
-            dfs_util(u, visitado, grafo, contagem);
+        if (cor[u] == 0)
+            dfs_util(u, cor, grafo, var, contagem);
     }
 }
 
-vector<pair<int, int>> kosaraju(vector<vector<int>> grafo, vector<vector<int>> grafoT, int n) {
+vector<int> kosaraju(vector<vector<int>> grafo, vector<vector<int>> grafoT, int n) {
     stack<int> pilha;
     vector<bool> visitado(n, false);
 
@@ -36,20 +36,35 @@ vector<pair<int, int>> kosaraju(vector<vector<int>> grafo, vector<vector<int>> g
             dfs(i, visitado, pilha, grafo);
     }
 
-    fill(visitado.begin(), visitado.end(), false);
+    vector<int> vist(n, 0);
+    vector<int> cont(n+1);
 
-    vector<pair<int, int>> componentes;
-    int flag = 0;
+    int cor = 1;
 
     while (!pilha.empty()){
         int v = pilha.top();
         pilha.pop();
 
-        if (!visitado[v]){
+        if (vist[v] == 0){
             int contagem = 0;
-            dfs_util(v, visitado, grafoT, contagem);
-            componentes.push_back({++flag, contagem});
+            dfs_util(v, vist, grafoT, cor++, contagem);
+            cont[cor-1] = contagem;
         }
+    }
+
+    vector<int> componentes;
+
+    for(int i = 0; i<vist.size(); i++){
+        int cor = vist[i];
+
+        if(cor == 0) continue;
+
+        for(int j = 0; j<vist.size(); j++){
+            if(cor == vist[j])
+                vist[j] = 0;
+        }
+
+        componentes.emplace_back(cont[cor]);
     }
 
     return componentes;
@@ -81,13 +96,15 @@ int main() {
             }
         }
 
-        vector<pair<int, int>> componentes = kosaraju(graph, graph_tr, n_pessoas);
+        vector<int> componentes = kosaraju(graph, graph_tr, n_pessoas);
 
         if(componentes.size() == 1)
             cout << "amor total" << endl;
         else{
+            int i = 0;
+            //sort(componentes.begin(), componentes.end());
             for(auto comp : componentes)
-                cout << "[" << comp.first << "," << comp.second << "]";
+                cout << "[" << ++i << "," << comp << "]";
 
             cout << endl;
         }
