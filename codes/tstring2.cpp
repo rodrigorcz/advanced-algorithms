@@ -16,7 +16,7 @@ struct Trie {
 			mp[s[i]].add(s, i + 1);
 		} else end++;
 	}
-	
+
 	void remove(string& s, int i = 0) {
         cnt--;
         if (i < (int) s.size()) {
