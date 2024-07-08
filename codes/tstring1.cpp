@@ -43,7 +43,7 @@ int main(){
 
     cin >> txt >> pat;
 
-	vector<int> b(pat.size()+1);
+    vector<int> b(pat.size()+1);
 
     kmp_pre_process(b, pat, pat.size());
 
