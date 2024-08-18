@@ -1,3 +1,5 @@
-# Advanced Algorithms Laboratory 
+# Advanced Algorithms 
 
-Resolution of exercises aiming to review/improve rapid development of advanced algorithms skills. The goal is to develop group work, and to learn the International Collegiate Programming Contest format and dynamics.
+This repository contains the codes for the exercises in the Advanced Algorithms and Labs 1 and 2 courses. The goal of these courses is to develop and improve rapid development skills in advanced algorithms.
+
+These codes were developed in C++ and Rust, however, at the time they were developed, I was just starting to learn Rust, so these codes may be inefficient or poorly written :-) .
