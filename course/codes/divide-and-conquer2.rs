@@ -25,8 +25,12 @@ fn func_aux(pages: &[i32], n: usize, m: i32, max_pages: i32) -> bool {
 }
 
 fn find_min(pages: &[i32], n: usize, m: i32) -> i32 {
-    let low = *pages.iter().max().unwrap_or(&0);
-    let high: i32 = pages.iter().sum();
+
+    let mut pages_sorted = pages.to_vec();
+    pages_sorted.sort_unstable();
+
+    let low = *pages_sorted.iter().max().unwrap_or(&0);
+    let high: i32 = pages_sorted.iter().sum();
     let mut result = high;
 
     let mut low = low;
@@ -35,7 +39,7 @@ fn find_min(pages: &[i32], n: usize, m: i32) -> i32 {
     while low <= high {
         let mid = (high + low) / 2;
 
-        if func_aux(pages, n, m, mid) {
+        if func_aux(&pages_sorted, n, m, mid) {
             result = mid;
             high = mid - 1;
         } else {
